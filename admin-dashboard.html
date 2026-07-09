@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FoodieExpress — Admin Dashboard</title>
+<link rel="stylesheet" href="admin-dashboard.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">Foodie<span>Express</span> <small>Admin</small></div>
+  <button id="logoutBtn" class="btn-ghost">Log out</button>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="overview">Overview</button>
+  <button class="tab-btn" data-tab="restaurants">Restaurants</button>
+  <button class="tab-btn" data-tab="users">Users</button>
+  <button class="tab-btn" data-tab="orders">Orders</button>
+</nav>
+
+<main class="container">
+
+  <section id="overview" class="tab-panel">
+    <div class="stat-grid" id="statGrid"></div>
+  </section>
+
+  <section id="restaurants" class="tab-panel hidden">
+    <div class="row-between">
+      <h2>Restaurants</h2>
+      <select id="restaurantStatusFilter">
+        <option value="">All</option>
+        <option value="pending" selected>Pending</option>
+        <option value="approved">Approved</option>
+        <option value="rejected">Rejected</option>
+        <option value="suspended">Suspended</option>
+      </select>
+    </div>
+    <div id="restaurantList" class="list"></div>
+  </section>
+
+  <section id="users" class="tab-panel hidden">
+    <div class="row-between">
+      <h2>Users</h2>
+      <select id="userRoleFilter">
+        <option value="">All roles</option>
+        <option value="customer">Customers</option>
+        <option value="owner">Owners</option>
+        <option value="admin">Admins</option>
+      </select>
+    </div>
+    <div id="userList" class="list"></div>
+  </section>
+
+  <section id="orders" class="tab-panel hidden">
+    <h2>Orders</h2>
+    <div id="orderList" class="list"></div>
+  </section>
+
+</main>
+
+<!-- Reject reason modal -->
+<div id="rejectModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>Reject restaurant</h3>
+    <textarea id="rejectReason" rows="3" placeholder="Reason for rejection"></textarea>
+    <div class="modal-actions">
+      <button id="cancelRejectBtn" class="btn-ghost">Cancel</button>
+      <button id="confirmRejectBtn" class="btn-danger">Reject</button>
+    </div>
+  </div>
+</div>
+
+<script src="admin-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FoodieExpress — Restaurant Owner Dashboard</title>
+<link rel="stylesheet" href="owner-dashboard.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">Foodie<span>Express</span> <small>Owner</small></div>
+  <button id="logoutBtn" class="btn-ghost">Log out</button>
+</header>
+
+<main class="container">
+
+  <!-- No restaurant yet: registration form -->
+  <section id="registerSection" class="card hidden">
+    <h2>Register your restaurant</h2>
+    <p class="muted">Submit your details below. An admin will review and approve your listing before it goes live.</p>
+    <form id="restaurantForm">
+      <label>Restaurant name<input type="text" id="r_name" required></label>
+      <label>Cuisine type<input type="text" id="r_cuisine" placeholder="e.g. North Indian, Chinese"></label>
+      <label>Description<textarea id="r_description" rows="3"></textarea></label>
+      <label>Address<input type="text" id="r_address" required></label>
+      <label>City<input type="text" id="r_city" required></label>
+      <label>Phone<input type="text" id="r_phone"></label>
+      <label>Image URL<input type="text" id="r_image"></label>
+      <button type="submit" class="btn-primary">Submit for approval</button>
+    </form>
+    <div id="registerMsg" class="msg"></div>
+  </section>
+
+  <!-- Existing restaurant: status + management -->
+  <section id="dashboardSection" class="hidden">
+    <div class="card status-card">
+      <div>
+        <h2 id="restName">—</h2>
+        <span id="statusBadge" class="badge">pending</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="openToggle">
+        <span>Open for orders</span>
+      </label>
+    </div>
+
+    <div id="rejectionNotice" class="card notice hidden"></div>
+
+    <div class="card">
+      <div class="row-between">
+        <h3>Menu</h3>
+        <button id="addItemBtn" class="btn-primary small">+ Add item</button>
+      </div>
+      <div id="menuList" class="menu-list"></div>
+    </div>
+
+    <div class="card">
+      <h3>Recent orders</h3>
+      <div id="ordersList" class="orders-list"></div>
+    </div>
+  </section>
+
+  <!-- Add / edit menu item modal -->
+  <div id="itemModal" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="itemModalTitle">Add menu item</h3>
+      <form id="itemForm">
+        <input type="hidden" id="item_id">
+        <label>Name<input type="text" id="item_name" required></label>
+        <label>Price (₹)<input type="number" id="item_price" step="0.01" required></label>
+        <label>Category<input type="text" id="item_category" placeholder="Starters, Main Course..."></label>
+        <label>Description<textarea id="item_description" rows="2"></textarea></label>
+        <label>Image URL<input type="text" id="item_image"></label>
+        <label class="checkbox-label"><input type="checkbox" id="item_veg" checked> Vegetarian</label>
+        <div class="modal-actions">
+          <button type="button" id="cancelItemBtn" class="btn-ghost">Cancel</button>
+          <button type="submit" class="btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</main>
+
+<script src="owner-dashboard.js"></script>
+</body>
+</html>
